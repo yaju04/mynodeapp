@@ -10,9 +10,9 @@ function create(__helpers) {
   return function render(data, out) {
     ___components_app_header_template_marko.render({"title": data.title}, out);
 
-    out.w('<head><title>Time</title><link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"><script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script></head><div class="container"><h2>' +
+    out.w('<head><title>Time</title><link rel="stylesheet" href="/../../../../css/application.css"></head><div class="container"><h2>' +
       escapeXml(data.name) +
-      '</h2><table class="table-bordered"><thead>');
+      '</h2><table class="table table-bordered"><thead class="thead-inverse">');
 
     if (notEmpty(data.articles)) {
       out.w('<tr><th>Book Title</th><th>Author</th><th>ISBN</th><th>Price</th><th>Average Rating</th><th> Review</th></tr>');

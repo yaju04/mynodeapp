@@ -1,14 +1,13 @@
 <app-header title="$data.title"></app-header>
 <head>
 		<title>Time</title>
-		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="/../../../../css/application.css">
 	</head>
 
 		<div class="container">
 			<h2>${data.name}</h2>
-			<table class="table-bordered">
-		  <thead >
+			<table class="table table-bordered">
+		  <thead class="thead-inverse">
 		    <tr if="notEmpty(data.articles)">
 		      <th>Book Title</th>
 		      <th>Author</th>
@@ -20,8 +19,8 @@
 		    </tr>
 		  </thead>
 		  <tbody >
-		    <tr if="notEmpty(data.articles)" for="book in data.articles">
-				<td>$book.title</td>
+		    <tr  if="notEmpty(data.articles)" for="book in data.articles">
+				<td >$book.title</td>
 				<td>$book.author</td>
 				<td>$book._id</td>
 				<td>$book.price</td>

@@ -17,6 +17,14 @@ module.exports = function (grunt) {
         file: 'app.js'
       }
     },
+    cssmin: {
+      target: {
+        files: {
+          'public/css/application.css': ['public/css/bootstrap.min.css']
+          
+        }
+      }
+    },
     watch: {
       options: {
         nospawn: true,
@@ -47,7 +55,8 @@ module.exports = function (grunt) {
       }
     }
   });
-
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+ // grunt.loadNpmTasks('grunt-contrib-uglify')
   grunt.config.requires('watch.js.files');
   files = grunt.config('watch.js.files');
   files = grunt.file.expand(files);
