@@ -124,34 +124,38 @@ Book.findById(req.body.isbnCode, function(err, book) {
      
         book.reviews.push({ name: req.body.reviewer_name,review:req.body.review,rating:req.body.rating });
        //book.reviews.push(req.body.reviewer_name);
-         console.log("book.reviews",book.reviews);
+       // console.log("book.reviews length",book.reviews);
          var temp=0;
          for(var i in book.reviews)
          {
-           console.log(book.reviews[i]["rating"])
+          // console.log(book.reviews[i].rating)
+           if(typeof book.reviews[i]["rating"] != "undefined" ){
+          
            temp=temp+ book.reviews[i]["rating"];
+            }
             
          }
-       console.log("temp"+temp+"rating"+(temp/book.reviews.length));
+      // console.log("temp"+temp+"rating"+(temp/book.reviews.length));
        var avgrat=temp/book.reviews.length;
        book.average_rating=avgrat;
 
-      //   var avg=[
-      //       {$group:{
-      //               _id:req.body.isbnCode,
-      //               avgRating:{ $avg: req.body.rating }
-      //             }
-      //           }
-
-      //        ]
-      //    book.aggregate(avg,function(err, result){
-      //           if(err)throw err;
-      //          console.log("result",result);
-      // });
+     
  
 
         book.save(function(err) {
-               if (err)throw err;
+        if (err){
+              console.log(err.stack);
+             var addTemplate = marko.load(require.resolve('../views/books/addreview.marko'));
+               addTemplate.render({
+                    $global: {locals: req.app.locals},
+                    title:"yaju",
+                    author:req.query.author ,
+                     price:req.query.price ,
+                    id:req.query.id,
+                    errormessage:"Add Proper data",
+
+                  }, res);
+              }
             Book.find({}, function(err, books) {
 
               if (err) return next(err);
